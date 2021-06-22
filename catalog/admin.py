@@ -9,8 +9,6 @@ admin.site.register(Genre)
 admin.site.register(Reader)
 admin.site.register(Review)
 
-from django.contrib import admin
-from .models import Book, Author, BookStatus, Reader, Genre, Review
 # Register your models here.
 
 class BooksInline(admin.TabularInline):
@@ -26,7 +24,7 @@ class BookStatusInline(admin.TabularInline):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-  list_display = ('title', 'author', 'display_genre')
+  list_display = ('title', 'author',) #'genre')
   inlines = [BookStatusInline]
 
 
