@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% extends "site_base.html" %}
+  {% block title %}<title>Your Local Library</title>{% endblock %}
+</head>
+<body>
+
+{% block content %}
+  <h1>Library Home</h1>
+  <p>Welcome to your local library, a website developed by <em>LDW Consultancy</em>!</p>
+   <h2>Library Records:</h2>
+  <p>The library has the following record counts:</p>
+  <ul>
+    <li><strong>Books:</strong> {{ num_books }}</li>
+    <li><strong>Books on loan:</strong> {{ on_loan }}</li>
+    <li><strong>Books available:</strong> {{ num_books_available }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+  </ul>
+{% endblock %}
+</body>
+</html>
