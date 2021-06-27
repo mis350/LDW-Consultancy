@@ -63,12 +63,12 @@ def create_review(request):
 
 class BookListView(generic.ListView):
   model = Book
-  context_object_name = 'book_list'   # your own name for the list as a template variable
-  queryset = Book.objects.all() # Get 5 books containing the title war
-  template_name ='books/book_list.html'  
+  context_object_name = 'book_list' 
+  queryset = Book.objects.all() 
+  template_name ='book_list.html'  
 
-def book_detail(request, primary_key):
-  book = get_object_or_404(Book, pk=primary_key)
-  return render(request, 'catalog/book_detail.html', context={'book': book})
+#def book_detail(request, primary_key):
+  #book = get_object_or_404(Book, pk=primary_key)
+  #return render(request, 'catalog/book_detail.html', context={'book': book})
 
   

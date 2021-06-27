@@ -31,8 +31,8 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse('book-detail', args=[str(self.id)])
+    #def get_absolute_url(self):
+        #return reverse('books', args=[str(self.id)])
 
 
 class BookStatus(models.Model):
