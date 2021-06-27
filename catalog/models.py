@@ -62,6 +62,7 @@ class BookStatus(models.Model):
 
     class Meta:
         ordering = ['due_back']
+        verbose_name_plural = "Book Statuses"
 
     def __str__(self):
         return f' ({self.book.title}) {self.status}'
@@ -79,7 +80,7 @@ class Reader(models.Model):
 class Author(models.Model):
     first_name = models.CharField(max_length=100, )
     last_name = models.CharField(max_length=100)
-    date_of_birth = models.DateField(null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True, verbose_name="DOB")
     date_of_death = models.DateField('Died', null=True, blank=True)
 
     def __str__(self):
@@ -94,3 +95,6 @@ class Review(models.Model):
                                    default='anonymous')
     created_on = models.DateTimeField(auto_now_add=True)
     book = models.ForeignKey('Book', on_delete=models.CASCADE)
+    def __str__(self):
+        return f'{self.book}, {self.created_on}'
+

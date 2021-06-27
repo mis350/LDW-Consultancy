@@ -37,3 +37,4 @@ class BookStatusAdmin(admin.ModelAdmin):
     (None, {'fields': ('book', 'imprint', 'id')}),
     ('Availability', {'fields': ('status', 'due_back', 'borrower')}),
   )
+
