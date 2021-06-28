@@ -19,7 +19,7 @@ from catalog import views
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('catalog/', include('catalog.urls')),
      path('', views.index, name='index'),
 ]

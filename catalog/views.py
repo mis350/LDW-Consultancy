@@ -67,8 +67,8 @@ class BookListView(generic.ListView):
   queryset = Book.objects.all() 
   template_name ='book_list.html'  
 
-#def book_detail(request, primary_key):
-  #book = get_object_or_404(Book, pk=primary_key)
-  #return render(request, 'catalog/book_detail.html', context={'book': book})
+def book_detail(request, primary_key):
+  book = get_object_or_404(Book, pk=primary_key)
+  return render(request, 'book_detail.html', context={'book': book})
 
   
