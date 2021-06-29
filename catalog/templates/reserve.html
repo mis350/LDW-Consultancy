@@ -1,0 +1,20 @@
+{% extends 'site_base.html' %}
+
+{% block content %}
+  <h2>Choose a book:</h2>
+<form action="" method="post">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" value="Reserve">
+</form>
+
+  
+  
+  
+  
+  
+  
+  
+  <p> <strong> Note: </Strong> You must pick up your book before closing time <u> today </u> </p>
+
+{% endblock %}

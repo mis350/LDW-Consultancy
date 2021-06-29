@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ReviewForm
-from .models import Book, Author, BookStatus, Genre, Reader, Review
+from .forms import ReviewForm, BookForm
+from .models import Book, Author, BookStatus, Genre, Review
 from django.views import generic
 
 # Create your views here.
@@ -78,3 +78,16 @@ class GenreListView(generic.ListView):
   queryset = Genre.objects.all() 
   template_name ='genre_list.html'  
   paginate_by = 20
+
+def reserve_book(request):
+  data = {}
+  f = BookForm(request.POST or None)
+  data["form"] = f
+  if f.is_valid():
+    f.save()
+    return redirect("book-reserved")
+  return render(request, "reserve.html", context=data)
+
+def reserve_complete(request):
+  data={}
+  return render(request,"complete.html", context=data)

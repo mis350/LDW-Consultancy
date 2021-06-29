@@ -11,7 +11,7 @@
   <ol>
     {% for review in review_list %}
       <li>
-        <a href="{{ review.get_absolute_url }}">{{ review.book }}</a>:
+      <u> <strong>{{ review.book }}:</strong></u>
 
 
         <p>{{review.review_text}} <strong>({{review.created_on}}) </strong></p>
