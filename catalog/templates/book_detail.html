@@ -14,7 +14,7 @@
   <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
 
   <div style="margin-left:20px;margin-top:20px">
-    <h4>Extra Information</h4>
+    <h4>Book Copies Information:</h4>
 
     {% for copy in book.bookstatus_set.all %}
       <hr>

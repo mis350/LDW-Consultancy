@@ -26,40 +26,28 @@ def index(request):
         'on_loan':  on_loan,
         'num_books_available': num_books_available,
         'num_authors': num_authors,
-        #'fic_genre': fic_genre
+        'num_visits': num_visits,
     }
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=data)
 
 
-def show_review(request, s):
-  obj = get_object_or_404(Review, pk=s)
-  reviews = obj.review_set.all()
-
-  data = {}
-  data["book"] = obj
-  data["review_list"] = reviews
+class ReviewListView(generic.ListView):
+  model = Review
+  context_object_name = 'review_list' 
+  queryset = Review.objects.all() 
+  template_name ='review_list.html'  
   
+
+def create_review(request):
+  data = {}
   f = ReviewForm(request.POST or None)
   data["form"] = f
   if f.is_valid():
     f.save()
-    return redirect("book_list", s=obj.pk)
-
-  return render(request, "book_detail.html", context=data)
-
-def create_review(request):
-  f = ReviewForm(request.POST or None)
-
-  data = {}
-  data["form"] = f
-
-  if f.is_valid():
-    review = f.save(commit=False)
-    review.save()
-    return redirect("show-review", t=review.title)
-  return render(request, "create_review.html", context=data)
+    return redirect("review-list")
+  return render(request, "add_review.html", context=data)
 
 class BookListView(generic.ListView):
   model = Book
@@ -71,4 +59,22 @@ def book_detail(request, primary_key):
   book = get_object_or_404(Book, pk=primary_key)
   return render(request, 'book_detail.html', context={'book': book})
 
-  
+class AuthorListView(generic.ListView):
+    model = Author
+    context_object_name = 'author_list'
+    queryset = Author.objects.all() 
+    template_name ='author_list.html'  
+    paginate_by = 10
+
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
+    template_name = 'author_detail.html'
+
+
+class GenreListView(generic.ListView):
+  model = Genre
+  context_object_name = 'genre_list'
+  queryset = Genre.objects.all() 
+  template_name ='genre_list.html'  
+  paginate_by = 20

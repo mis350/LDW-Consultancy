@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% extends "site_base.html" %}
+</head>
+<body>
+
+{% block content %}
+  <h1>List of available genres:</h1>
+  {% if genre_list %}
+  <ol>
+    {% for genre in genre_list %}
+      <li>
+        {{ genre.name }}
+      
+      </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+    <p>There are no genres to display.</p>
+  {% endif %} 
+{% endblock %}
+</body>
+</html>
+

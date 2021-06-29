@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% extends "site_base.html" %}
+</head>
+<body>
+
+{% block content %}
+  <h1>Reader Reviews:</h1>
+  {% if review_list %}
+  <ol>
+    {% for review in review_list %}
+      <li>
+        <a href="{{ review.get_absolute_url }}">{{ review.book }}</a>:
+
+
+        <p>{{review.review_text}} <strong>({{review.created_on}}) </strong></p>
+      </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+    <p>There are no reviews available.</p>
+  {% endif %} 
+{% endblock %}
+</body>
+</html>
+

@@ -12,11 +12,13 @@
    <h2>Library Records:</h2>
   <p>The library has the following record counts:</p>
   <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Books on loan:</strong> {{ on_loan }}</li>
-    <li><strong>Books available:</strong> {{ num_books_available }}</li>
+    <li><strong>Total Books:</strong> {{ num_books }}</li>
+    <li><strong>Book copies on loan:</strong> {{ on_loan }}</li>
+    <li><strong>Book copies available:</strong> {{ num_books_available }}</li>
     <li><strong>Authors:</strong> {{ num_authors }}</li>
   </ul>
+
+  <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
 {% endblock %}
 </body>
 </html>
