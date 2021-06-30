@@ -13,7 +13,7 @@ urlpatterns = [
     path('genres/', views.GenreListView.as_view(), name='genre-list'),
     path('reserve/', views.reserve_book, name='reserve'),
     path('complete/', views.reserve_complete, name='book-reserved'),
+    path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
 ]
-
 
 
