@@ -70,8 +70,9 @@ class BookStatus(models.Model):
 
 
     class Meta:
-        ordering = ['due_back']
-        verbose_name_plural = "Book Statuses"
+       permissions = (("can_mark_returned", "Set book as returned"),)
+       ordering = ['due_back']
+       verbose_name_plural = "Book Statuses"
 
     def __str__(self):
         return f' ({self.book.title}) {self.status}'

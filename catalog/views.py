@@ -2,8 +2,21 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ReviewForm, BookForm
 from .models import Book, Author, BookStatus, Genre, Review
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
-# Create your views here.
+# Create your views here
+class MyView(LoginRequiredMixin):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
+  
+
+
+class MyView2(PermissionRequiredMixin):
+    permission_required = 'catalog.can_mark_returned'
+    # Or multiple permissions
+    permission_required = ('catalog.can_mark_returned')
+
 def index(request):
     """View function for home page of site."""
 
@@ -91,3 +104,12 @@ def reserve_book(request):
 def reserve_complete(request):
   data={}
   return render(request,"complete.html", context=data)
+
+
+class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
+    model = BookStatus
+    template_name ='bookstatus_list_borrowed_user.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return BookStatus.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
